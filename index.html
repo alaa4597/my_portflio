@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Elioua | MEAN Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 40, 200, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 0, 150, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(0, 150, 255, 0.3) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 80px rgba(102, 126, 234, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8));
+            }
+        }
+
+        .typewriter {
+            font-size: 2em;
+            color: #a8b2d1;
+            margin-bottom: 30px;
+            min-height: 60px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #667eea;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #8892b0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            margin-top: 40px;
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+        }
+
+        section {
+            position: relative;
+            background: rgba(17, 25, 40, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            margin: 80px 0;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: fadeIn 1s;
+        }
+
+        h2 {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+            border-color: rgba(102, 126, 234, 0.8);
+        }
+
+        .skill-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.5));
+        }
+
+        .skill-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card p {
+            color: #a8b2d1;
+            font-size: 0.95em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 40px;
+            border-radius: 25px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        .project-card h3 {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .project-card p {
+            color: #a8b2d1;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+            transform: translateY(-3px);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8892b0;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            font-size: 1.1em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 3em; }
+            .typewriter { font-size: 1.5em; }
+            h2 { font-size: 2em; }
+            section { padding: 30px 20px; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="gradient-bg"></div>
+
+    <header>
+        <div class="hero-content">
+            <h1>Alaa Abobasha</h1>
+            <div class="typewriter">
+                <span id="typewriter-text"></span>
+                <span class="cursor"></span>
+            </div>
+            <p>Transforming ideas into scalable, secure, and high-performance web applications. I design and build modern, secure, and scalable web solutions using the MEAN stack.</p>
+            <a href="#contact" class="cta-btn">Let's Connect</a>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2em;">↓</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p style="font-size: 1.2em; color: #a8b2d1; line-height: 1.9;">
+                I'm a passionate Full-Stack Developer specializing in building exceptional web applications using the MEAN Stack (MongoDB, Express.js, Angular, Node.js). 
+                I love turning innovative ideas into reality through clean code and intuitive user experiences. My focus is on creating scalable, maintainable, 
+                and performant solutions that make a real impact.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🍃</div>
+                    <h3>MongoDB</h3>
+                    <p>NoSQL Database</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Express.js</h3>
+                    <p>Backend Framework</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🅰️</div>
+                    <h3>Angular</h3>
+                    <p>Frontend Framework</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💚</div>
+                    <h3>Node.js</h3>
+                    <p>Runtime Environment</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📜</div>
+                    <h3>TypeScript</h3>
+                    <p>Type-Safe JavaScript</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>HTML/CSS</h3>
+                    <p>Modern Web Design</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Git</h3>
+                    <p>Version Control</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <h3>RESTful APIs</h3>
+                    <p>Web Services</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3><span>🎵</span> SoundCloud Clone</h3>
+                    <p>
+                        A comprehensive music and podcast streaming platform featuring audio file uploads, playlist creation, 
+                        real-time comments, likes, and user interactions. Built with a responsive and intuitive interface 
+                        that delivers a seamless user experience across all devices.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">RESTful API</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><span>🛒</span> E-Commerce Platform</h3>
+                    <p>
+                        A full-featured online shopping platform with shopping cart functionality, secure payment integration, 
+                        product management system, admin dashboard, and customer reviews. Responsive design ensures optimal 
+                        performance on desktop, tablet, and mobile devices.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Payment Gateway</span>
+                        <span class="tech-tag">JWT Auth</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p style="font-size: 1.2em; color: #a8b2d1; text-align: center; max-width: 700px; margin: 20px auto 40px;">
+                Have a project in mind or just want to chat? I'm always open to discussing new opportunities, 
+                creative ideas, or partnerships. Let's create something amazing together!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:alaaabobasha20@gmail.com"  class="contact-btn">
+                    <span>📧</span> Email Me
+                </a>
+                <a href="https://github.com/alaa4597" class="contact-btn" target="_blank">
+                    <span>💻</span> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/alaa-abobasha-361ab4308" class="contact-btn" target="_blank">
+                    <span>💼</span> LinkedIn
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p style="font-size: 1.1em; margin-bottom: 10px;">© 2024 Alaa Elioua. All rights reserved.</p>
+        <p style="opacity: 0.7;">Crafted with ❤️ using MEAN Stack</p>
+    </footer>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Typewriter effect
+        const texts = [
+            'MEAN Stack Developer',
+            'Full-Stack Engineer',
+            'Problem Solver',
+            'Code Enthusiast'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter-text');
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeWriter, speed);
+        }
+
+        typeWriter();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
